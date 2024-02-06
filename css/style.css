@@ -228,7 +228,7 @@ body {
 .header-features-item {
   width: 18rem;
   padding: 1.875rem 3.125rem;
-  height: auto !important;
+  height: auto;
   border: 0.0625rem solid rgba(235, 235, 240, 0.2);
 }
 .slider-buttons {
