@@ -69,6 +69,28 @@ const swiper = new Swiper(".swiper", {
       slidesPerView: 5,
     }
   }
-  
+});
 
+const swiperSteps = new Swiper(".steps-slider", {
+  speed: 500,
+  slidesPerView: 1,
+  navigation: {
+    nextEl: ".steps-button-next",
+    prevEl: ".steps-button-prev",
+  },
+  breakpoints: {
+    // when window width is >= 320px
+    300: {
+      slidesPerView: 1,
+    },
+    576: {
+      slidesPerView: 2,
+    },
+    768: {
+      slidesPerView: 3,
+    },
+    992: {
+      slidesPerView: 3,
+    },
+  },
 });
