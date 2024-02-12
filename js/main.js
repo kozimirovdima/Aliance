@@ -39,10 +39,31 @@ menuToggle.addEventListener("click", (event) => {
   event.preventDefault();
   menu.classList.contains("is-open") ? closeMenu() : openMenu();
 });
-
+const swiperSteps = new Swiper(".steps-slider", {
+  speed: 500,
+  slidesPerView: 1,
+  navigation: {
+    nextEl: ".steps-button-next",
+    prevEl: ".steps-button-prev",
+  },
+  breakpoints: {
+    // when window width is >= 320px
+    300: {
+      slidesPerView: 1,
+    },
+    576: {
+      slidesPerView: 2,
+    },
+    768: {
+      slidesPerView: 3,
+    },
+    992: {
+      slidesPerView: 3,
+    },
+  },
+});
 const swiper = new Swiper(".swiper", {
   speed: 500,
-  // autoHeight: true,
   slidesPerView: 4,
   navigation: {
     nextEl: ".slider-button-next",
@@ -67,30 +88,6 @@ const swiper = new Swiper(".swiper", {
     // when window width is >= 1200
     1200: {
       slidesPerView: 5,
-    }
-  }
-});
-
-const swiperSteps = new Swiper(".steps-slider", {
-  speed: 500,
-  slidesPerView: 1,
-  navigation: {
-    nextEl: ".steps-button-next",
-    prevEl: ".steps-button-prev",
-  },
-  breakpoints: {
-    // when window width is >= 320px
-    300: {
-      slidesPerView: 1,
-    },
-    576: {
-      slidesPerView: 2,
-    },
-    768: {
-      slidesPerView: 3,
-    },
-    992: {
-      slidesPerView: 3,
     },
   },
 });
