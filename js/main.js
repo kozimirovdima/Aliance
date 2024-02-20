@@ -114,16 +114,34 @@ const swiperBlog = new Swiper(".blog-slider", {
 });
 
 const modal = document.querySelector(".modal");
-const modalClose = document.querySelector('.modal-close');
-const modalToggle = document.querySelectorAll("[data-toggle=modal]");
-console.log(modalToggle);
-modalToggle.forEach((element) => {
-  element.addEventListener('click', (event) => {
-    event.preventDefault();
-    modal.classList.add('is-open');
-  });
+const modalDialog = document.querySelector(".modal-dialog");
+document.addEventListener("click", (event) => {
+  if (
+    event.target.dataset.toggle == "modal" || 
+    event.target.parentNode.dataset.toggle == "modal" || 
+    (!event.composedPath().includes(modalDialog) && modal.classList.contains('is-open'))
+    ) 
+    {
+      event.preventDefault();
+      modal.classList.toggle('is-open');
+    }
+  // console.log(event.target.dataset.toggle == "modal" || event.target.parentNode.dataset.toggle == "modal");
 });
-modalClose.addEventListener('click', (event) => {
-  event.preventDefault();
-  modal.classList.remove('is-open');
-})
+document.addEventListener('keyup', (event) => {
+  if (event.key == "Escape" && modal.classList.contains("is-open")) {
+    modal.classList.toggle("is-open");
+  }
+});
+// const modalClose = document.querySelector('.modal-close');
+// const modalToggle = document.querySelectorAll("[data-toggle=modal]");
+// console.log(modalToggle);
+// modalToggle.forEach((element) => {
+//   element.addEventListener('click', (event) => {
+//     event.preventDefault();
+//     modal.classList.add('is-open');
+//   });
+// });
+// modalClose.addEventListener('click', (event) => {
+//   event.preventDefault();
+//   modal.classList.remove('is-open');
+// })
