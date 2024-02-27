@@ -208,12 +208,13 @@
           случаях!
         </p>
         <!-- /.modal-text -->
-        <form action="#" class="modal-form">
+        <form action="handler.php" method="POST" class="modal-form">
           <div class="input-group-wrapper input-group-vertical">
             <div class="input-group modal-input-group">
               <input
                 id="modal-user-name"
                 type="text"
+                name=username
                 class="input modal-input"
                 placeholder=" "
               />
@@ -227,6 +228,7 @@
                 id="modal-user-phone"
                 type="tel"
                 class="input modal-input"
+                name=userphone
                 placeholder=" "
               />
               <label
@@ -260,6 +262,7 @@
     </div>
     <!-- /.modal -->
     <script src="js/swiper-bundle.min.js"></script>
+    <script src="js/just-validate.production.min.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>

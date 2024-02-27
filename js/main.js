@@ -15,7 +15,7 @@ const lightModeOff = (event) => {
 
 const changeNavHeight = (height) => {
   navbar.style.height = height;
-}
+};
 
 const openMenu = (event) => {
   // фунуция открывания меню
@@ -121,17 +121,17 @@ const modal = document.querySelector(".modal");
 const modalDialog = document.querySelector(".modal-dialog");
 document.addEventListener("click", (event) => {
   if (
-    event.target.dataset.toggle == "modal" || 
-    event.target.parentNode.dataset.toggle == "modal" || 
-    (!event.composedPath().includes(modalDialog) && modal.classList.contains('is-open'))
-    ) 
-    {
-      event.preventDefault();
-      modal.classList.toggle('is-open');
-    }
+    event.target.dataset.toggle == "modal" ||
+    event.target.parentNode.dataset.toggle == "modal" ||
+    (!event.composedPath().includes(modalDialog) &&
+      modal.classList.contains("is-open"))
+  ) {
+    event.preventDefault();
+    modal.classList.toggle("is-open");
+  }
   // console.log(event.target.dataset.toggle == "modal" || event.target.parentNode.dataset.toggle == "modal");
 });
-document.addEventListener('keyup', (event) => {
+document.addEventListener("keyup", (event) => {
   if (event.key == "Escape" && modal.classList.contains("is-open")) {
     modal.classList.toggle("is-open");
   }
@@ -149,3 +149,46 @@ document.addEventListener('keyup', (event) => {
 //   event.preventDefault();
 //   modal.classList.remove('is-open');
 // })
+
+const forms = document.querySelectorAll("form"); // собираем формы
+forms.forEach((form) => {
+  const validation = new JustValidate(form, {
+    errorFieldCssClass: "is-invalid",
+  });
+  validation
+    .addField("[name=username]", [
+      {
+        rule: "required",
+        errorMessage: "Укажите имя",
+      },
+      {
+        rule: "maxLength",
+        value: 30,
+        errorMessage: "Максимально 30 символов",
+      },
+    ])
+    .addField("[name=userphone]", [
+      {
+        rule: "required",
+        errorMessage: "Укажите телефон",
+      },
+    ])
+    .onSuccess((event) => {
+      const thisForm = event.target; // nasha forma
+      const formData = new FormData(thisForm); // dannie iz nashei formi
+      const ajaxSend = (formData) => {
+        fetch(thisForm.getAttribute("action"), {
+          method: thisForm.getAttribute("method"),
+          body: formData,
+        }).then((response) => {
+          if (response.ok) {
+            thisForm.reset();
+            alert("Форма отправлена! :)")
+          } else {
+            alert(response.statusText);
+          }
+        });
+      };
+      ajaxSend(formData);
+    });
+});
