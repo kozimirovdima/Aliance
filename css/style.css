@@ -970,9 +970,18 @@ input:not(:placeholder-shown).input:not(:focus) ~ .input-group-label {
   display: flex;
   transition: opacity 0.2s;
 }
+/* .modal.is-open {
+  transform: translateX(0);
+  visibility: visible;
+  opacity: 1;
+} */
 .modal.is-open {
   transform: translateX(0);
   visibility: visible;
+  opacity: 1;
+}
+.modal.is-open .modal-dialog {
+  transform: translateY(0);
   opacity: 1;
 }
 .modal-dialog {
